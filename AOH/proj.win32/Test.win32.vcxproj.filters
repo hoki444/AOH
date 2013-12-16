@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="source">
+      <UniqueIdentifier>{cb024e33-3517-475d-8d98-a8cc07e1f695}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{83b4f53b-e62e-418b-8e9b-6dedaf211e1f}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc</Extensions>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{95781656-f3a0-4ca6-8608-1e2720dc326a}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;jpg;jpeg;jpe;png;manifest</Extensions>
+    </Filter>
+    <Filter Include="resource\fonts">
+      <UniqueIdentifier>{51bc206c-3062-4772-8e7c-cd716c23af1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource\images">
+      <UniqueIdentifier>{27e3b342-8005-4081-b8b2-304c98279b29}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\Test.ico">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\CloseSelected.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\CloseNormal.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\HelloWorld.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\fonts\futura-48.png">
+      <Filter>resource\fonts</Filter>
+    </Image>
+    <Image Include="..\Resources\images\leftman.png">
+      <Filter>resource\images</Filter>
+    </Image>
+    <Image Include="..\Resources\images\rightman.png">
+      <Filter>resource\images</Filter>
+    </Image>
+    <Image Include="..\Resources\images\play-selected.png">
+      <Filter>resource\images</Filter>
+    </Image>
+    <Image Include="..\Resources\images\shop-normal.png">
+      <Filter>resource\images</Filter>
+    </Image>
+    <Image Include="..\Resources\images\shop-selected.png">
+      <Filter>resource\images</Filter>
+    </Image>
+    <Image Include="..\Resources\images\exit-normal.png">
+      <Filter>resource\images</Filter>
+    </Image>
+    <Image Include="..\Resources\images\exit-selected.png">
+      <Filter>resource\images</Filter>
+    </Image>
+    <Image Include="..\Resources\images\play-normal.png">
+      <Filter>resource\images</Filter>
+    </Image>
+    <Image Include="..\Resources\images\field.png">
+      <Filter>resource\images</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Test.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HelloWorldScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\Resources\fonts\A Damn Mess.ttf">
+      <Filter>resource\fonts</Filter>
+    </Font>
+    <Font Include="..\Resources\fonts\Abberancy.ttf">
+      <Filter>resource\fonts</Filter>
+    </Font>
+    <Font Include="..\Resources\fonts\Abduction.ttf">
+      <Filter>resource\fonts</Filter>
+    </Font>
+    <Font Include="..\Resources\fonts\Paint Boy.ttf">
+      <Filter>resource\fonts</Filter>
+    </Font>
+    <Font Include="..\Resources\fonts\Schwarzwald Regular.ttf">
+      <Filter>resource\fonts</Filter>
+    </Font>
+    <Font Include="..\Resources\fonts\Scissor Cuts.ttf">
+      <Filter>resource\fonts</Filter>
+    </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\fonts\futura-48.fnt">
+      <Filter>resource\fonts</Filter>
+    </None>
+  </ItemGroup>
+</Project>
