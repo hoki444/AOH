@@ -13,13 +13,18 @@ using System;
 	string name;
 	int level;
 	public skill(){
-		name = "0";
+		name = "null";
 		level = 1;
 		}
 	public skill (string x,int y)
 	{
 		name = x;
 		level = y;
+	}
+	public skill (skill otherskill)
+	{
+		name = otherskill.getName();
+		level = otherskill.getLevel();
 	}
 	public void setName (string x)
 	{

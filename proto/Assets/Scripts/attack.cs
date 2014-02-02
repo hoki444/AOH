@@ -10,56 +10,38 @@
 using System;
 public class attack
 {
-	double power;
-	int hitnumber;
-	bool[] attackrange;
-	skill s1;
-	skill s2;
+	int power;
+	int[] attackrange;
+	skill[] s;
 	public attack ()
 	{
-		power = 1.0;
-		hitnumber = 1;
-		attackrange = new bool[9];
-		for (int i=0; i<9; i++) {
-			attackrange[i]=false;
+		power = 10;
+		attackrange = new int[6];
+		for (int i=0; i<6; i++) {
+			attackrange[i]=0;
 				}
-		s1 = new skill ("0", 1);
-		s2 = new skill ("0", 1);
+		s = new skill[4];
+		for(int i=0; i<4; i++) {
+			s[i]=new skill();
+		}
 	}
-	public void setPower (double p){
+	public void setPower (int p){
 		power = p;
 	}
-	public void sethitnumber (int n){
-		hitnumber = n;
+	public void setAttackrange (int n,int hit){
+		attackrange[n]=hit;
 	}
-	public void changeattackrange (int n){
-		if (attackrange[n]){
-			attackrange[n]=false;
-		}
-		else {
-			attackrange[n]=true;
-		}
+	public void setskill (skill sk,int i){
+		s[i] = sk;
 	}
-	public void setskill1 (skill s){
-		s1 = s;
-	}
-	public void setskill2 (skill s){
-		s2 = s;
-	}
-	public double getPower(){
+	public int getPower(){
 		return power;
 	}
-	public int getHitnumber(){
-		return hitnumber;
-	}
-	public bool[] getattackrange(){
+	public int[] getattackrange(){
 		return attackrange;
 	}
-	public skill getSkill1(){
-		return s1;
-	}
-	public skill getSkill2(){
-		return s2;
+	public skill[] getSkill(){
+		return s;
 	}
 }
 
