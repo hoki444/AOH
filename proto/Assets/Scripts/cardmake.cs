@@ -59,6 +59,21 @@ public class cardmake : MonoBehaviour {
 			sw.WriteLine(life);
 			sw.WriteLine(hp);
 			sw.WriteLine(atk);
+			Debug.Log("here");
+			for(int i=0;i<4;i++){
+				Debug.Log("here");
+				string[] temp=mattack[i].tostring();
+				for(int j=0;j<17;j++){
+					sw.WriteLine(temp[j]);
+				}
+			}
+			for(int i=0;i<4;i++){
+				Debug.Log("here");
+				string[] temp=mskill[i].tostring();
+				for(int j=0;j<2;j++){
+					sw.WriteLine(temp[j]);
+				}
+			}
 			sw.Close();
 			save=false;
 		}
@@ -124,6 +139,15 @@ public class cardmake : MonoBehaviour {
 			}
 		}
 		if (state == 2) {
+			for(int i=0;i<4;i++){
+				if(mattack[i].isOn()){
+					for(int j=0;j<4;j++){
+						if (GUI.Button (getRect(0.27+0.116*j,0.345+(double)i*0.16,0.04,0.04), "")) {
+							state=20+10*i+j;
+						}
+					}
+				}
+			}
 			GUI.DrawTexture(getRect(0.2,0.1,0.6,0.8),mtexture2);
 			GUIStyle mgui = new GUIStyle ();
 			mgui.fontSize = 30;
@@ -139,28 +163,43 @@ public class cardmake : MonoBehaviour {
 				tmanager=GameObject.Find("Tmanager").GetComponent<Texturemanager>();
 			}
 			for(int i=0;i<4;i++){
-				mattack[i].setPower(int.Parse(GUI.TextField (getRect(0.32,0.285+(double)i*0.16,0.06,0.04), mattack[i].getPower().ToString())));
-				for(int j=0;j<6;j++){
-					mattack[i].setAttackrange(j,int.Parse(GUI.TextField (getRect(0.43+0.045*j,0.285+(double)i*0.16,0.04,0.04),
-					                                                     mattack[i].getattackrange()[j].ToString())));
-				}
-				for(int j=0;j<4;j++){
-					mattack[i].getSkill()[j].setLevel(int.Parse(GUI.TextField (getRect(0.33+0.116*j,0.345+(double)i*0.16,0.04,0.04),
-					                                                         mattack[i].getSkill()[j].getLevel().ToString())));
-					try{
-						GUI.DrawTexture(getRect(0.27+0.116*j,0.345+(double)i*0.16,0.04,0.04),
-						                tmanager.getskilltexture(mattack[i].getSkill()[j].getName()));
+				if(mattack[i].isOn()){
+					if (GUI.Button(getRect(0.6,0.24+(double)i*0.16,0.16,0.04), "on")) {
+						mattack[i].changeOnOff();
 					}
-					catch{
-						tmanager=GameObject.Find("Tmanager").GetComponent<Texturemanager>();
+					mattack[i].setAttackvalue(int.Parse(GUI.TextField (getRect(0.4,0.24+(double)i*0.16,0.1,0.04), mattack[i].getAttackvalue().ToString())));
+					mattack[i].setPower(int.Parse(GUI.TextField (getRect(0.32,0.285+(double)i*0.16,0.06,0.04), mattack[i].getPower().ToString())));
+					for(int j=0;j<6;j++){
+						mattack[i].setAttackrange(j,int.Parse(GUI.TextField (getRect(0.43+0.045*j,0.285+(double)i*0.16,0.04,0.04),
+						                                                     mattack[i].getattackrange()[j].ToString())));
+					}
+					for(int j=0;j<4;j++){
+						mattack[i].getSkill()[j].setLevel(int.Parse(GUI.TextField (getRect(0.33+0.116*j,0.345+(double)i*0.16,0.04,0.04),
+						                                                           mattack[i].getSkill()[j].getLevel().ToString())));
+						try{
+							GUI.DrawTexture(getRect(0.27+0.116*j,0.345+(double)i*0.16,0.04,0.04),
+							                tmanager.getskilltexture(mattack[i].getSkill()[j].getName()));
+						}
+						catch{
+							tmanager=GameObject.Find("Tmanager").GetComponent<Texturemanager>();
+						}
+					}
+				}
+				else{
+					if (GUI.Button(getRect(0.6,0.24+(double)i*0.16,0.16,0.04), "off")) {
+						mattack[i].changeOnOff();
 					}
 				}
 			}
 			if (GUI.Button (getRect(0.7,0.92,0.2,0.04), "save!!")) {
-				state=0;
-			}
-
+				if(mattack[0].getAttackvalue()+mattack[1].getAttackvalue()+mattack[2].getAttackvalue()+mattack[3].getAttackvalue()==100)
+					state=0;
+				else{
+					Debug.Log ("not attack");
 				}
+			}
+			
+		}
 		if (state >= 10 && state < 20) {
 			for (int i=0;i<7;i++){
 				for(int j=0;j<10;j++){
@@ -170,6 +209,20 @@ public class cardmake : MonoBehaviour {
 						else
 							mskill [state - 10].setName (tmanager.getSkillname(10*i+j));
 						state = 1;
+					}
+				}
+			}
+			GUI.DrawTexture (getRect (0.2, 0.1, 0.6, 0.8), skilllist);
+		}
+		if (state >= 20 && state < 60) {
+			for (int i=0;i<7;i++){
+				for(int j=0;j<10;j++){
+					if (GUI.Button (getRect (0.2+0.06*j, 0.1+0.8/7.0*i, 0.06, 0.114), "")) {
+						if(10*i+j==19)
+							mattack[(state-20)/10].getSkill()[state%10].setName ("null");
+						else
+							mattack[(state-20)/10].getSkill()[state%10].setName (tmanager.getSkillname(10*i+j));
+						state = 2;
 					}
 				}
 			}

@@ -42,7 +42,15 @@ using System;
 	{
 		return level;
 	}
-
-
+	public string[] tostring(){
+		string[] result = new string[2];
+		result [0] = name;
+		result [1] = level.ToString ();
+		return result;
+	}
+	public void assignstring(string[] s){
+		name = s [0];
+		level = int.Parse (s [1]);
+		}
 		}
 

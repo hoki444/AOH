@@ -10,11 +10,15 @@
 using System;
 public class attack
 {
+	int attackvalue;
+	bool ison;
 	int power;
 	int[] attackrange;
 	skill[] s;
 	public attack ()
 	{
+		attackvalue = 0;
+		ison = true;
 		power = 10;
 		attackrange = new int[6];
 		for (int i=0; i<6; i++) {
@@ -28,6 +32,9 @@ public class attack
 	public void setPower (int p){
 		power = p;
 	}
+	public void setAttackvalue (int v){
+		attackvalue = v;
+	}
 	public void setAttackrange (int n,int hit){
 		attackrange[n]=hit;
 	}
@@ -37,11 +44,52 @@ public class attack
 	public int getPower(){
 		return power;
 	}
+	public int getAttackvalue(){
+		return attackvalue;
+	}
 	public int[] getattackrange(){
 		return attackrange;
 	}
 	public skill[] getSkill(){
 		return s;
+	}
+	public void changeOnOff(){
+		if (ison)
+			ison = false;
+		else
+			ison = true;
+		}
+	public bool isOn(){
+		return ison;
+	}
+	public string[] tostring(){
+		string[] result = new string[17];
+		result [0] = ison.ToString();
+		result [1] = attackvalue.ToString ();
+		result [2] = power.ToString ();
+		for (int i=0; i<6; i++) {
+			result[3+i]=attackrange[i].ToString();
+		}
+		for(int i=0; i<4; i++) {
+			string[] temp= s[i].tostring();
+			result[9+2*i]=temp[0];
+			result[10+2*i]=temp[1];
+		}
+		return result;
+	}
+	public void assignstring(string[] str){
+		ison = bool.Parse(str [0]);
+		attackvalue = int.Parse (str [1]);
+		power = int.Parse (str [2]);
+		for (int i=0; i<6; i++) {
+			attackrange[i] = int.Parse (str [3+i]);
+		}
+		for(int i=0; i<4; i++) {
+			string[] temp= new string[2];
+			temp[0]=str[9+2*i];
+			temp[1]=str[10+2*i];
+			s[i].assignstring(temp);
+		}
 	}
 }
 
