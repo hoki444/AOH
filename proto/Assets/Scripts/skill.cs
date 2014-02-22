@@ -11,6 +11,8 @@ using System;
 		public class skill
 		{
 	string name;
+	string skilltiming="null";
+	skillai sai=new skillai();
 	int level;
 	public skill(){
 		name = "null";

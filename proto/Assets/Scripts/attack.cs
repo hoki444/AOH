@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using System;
+using UnityEngine;
 public class attack
 {
 	int attackvalue;
@@ -18,7 +19,7 @@ public class attack
 	public attack ()
 	{
 		attackvalue = 0;
-		ison = true;
+		ison = false;
 		power = 10;
 		attackrange = new int[6];
 		for (int i=0; i<6; i++) {
@@ -90,6 +91,20 @@ public class attack
 			temp[1]=str[10+2*i];
 			s[i].assignstring(temp);
 		}
+	}
+	public string getType(){
+		if (ison) {
+						for (int i=0; i<4; i++) {
+								if (s [i].getLevel () > 5) {
+										return s [i].getName ();
+								}
+						}
+						if (attackrange [0] + attackrange [1] + attackrange [2] + attackrange [3] + attackrange [4] + attackrange [5] > 5) {
+								return "attackvalue";
+						}
+						return "power";
+				} else
+						return "null";
 	}
 }
 

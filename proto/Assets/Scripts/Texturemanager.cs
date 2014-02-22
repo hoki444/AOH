@@ -3,9 +3,11 @@ using System.Collections;
 public class Texturemanager : MonoBehaviour {
 	public Texture[] skillt;
 	public string[] skillname;
+	public Texture[] interfacet;
+	public Texture[] illustt;
+	public string[] illustname;
 	// Use this for initialization
 	void Start () {
-		Debug.Log (this.transform);
 	}
 	
 	// Update is called once per frame
@@ -24,5 +26,16 @@ public class Texturemanager : MonoBehaviour {
 	}
 	public string getSkillname(int i){
 		return skillname [i];
+	}
+	public Texture getattacktexture(string s){
+		if (s == "attackvalue") {
+						return interfacet [0];
+				} else if (s == "power") {
+						return interfacet [1];
+				} else
+						return getskilltexture (s);
+	}
+	public Texture getillusttexture(string s){
+		return illustt [findindex (illustname, s)];
 	}
 }

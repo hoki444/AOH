@@ -8,12 +8,11 @@ public class cardmake : MonoBehaviour {
 	public Texture skill;
 	public Texture skilllist;
 	public Texture fire;
+	public Texture rectt;
 	int state=0;
-	string cardno="1";
+	string cardno="0";
 	string cardname="이름";
-
 	string cost="0";
-	string level="1";
 	string q="F";
 	string life="1";
 	string hp="5";
@@ -35,40 +34,39 @@ public class cardmake : MonoBehaviour {
 			mattack[i]=new attack();
 			mskill[i]=new skill();
 		}
+		mattack [0].changeOnOff ();
+		mattack [0].setAttackrange (0, 1);
+		mattack [0].setAttackvalue (100);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (save) {
 			try{
-				fs=File.Create("cardinfo\\"+q+"\\"+cardname+level+cardno+".txt");
+				fs=File.Create("cardinfo\\"+q+"\\"+cardno+".txt");
 			}
 			catch{
 				DirectoryInfo md= new DirectoryInfo("cardinfo\\"+q+"\\");
 				md.Create();
-				fs=File.Create("cardinfo\\"+q+"\\"+cardname+level+cardno+".txt");
+				fs=File.Create("cardinfo\\"+q+"\\"+cardno+".txt");
 			}
 
 			fs.Close();
-			StreamWriter sw= new StreamWriter("cardinfo\\"+q+"\\"+cardname+level+cardno+".txt");
+			StreamWriter sw= new StreamWriter("cardinfo\\"+q+"\\"+cardno+".txt");
 			sw.WriteLine(cardname);
 			sw.WriteLine(q);
-			sw.WriteLine(level);
 			sw.WriteLine(cardno);
 			sw.WriteLine(cost);
 			sw.WriteLine(life);
 			sw.WriteLine(hp);
 			sw.WriteLine(atk);
-			Debug.Log("here");
 			for(int i=0;i<4;i++){
-				Debug.Log("here");
 				string[] temp=mattack[i].tostring();
 				for(int j=0;j<17;j++){
 					sw.WriteLine(temp[j]);
 				}
 			}
 			for(int i=0;i<4;i++){
-				Debug.Log("here");
 				string[] temp=mskill[i].tostring();
 				for(int j=0;j<2;j++){
 					sw.WriteLine(temp[j]);
@@ -80,12 +78,13 @@ public class cardmake : MonoBehaviour {
 	}
 	void OnGUI()
 	{
+		GUIStyle mgui = new GUIStyle ();
+		mgui.fontSize = 30;
 		if (state==0) {
 			GUI.DrawTexture(getRect(0.2,0.1,0.6,0.8),mtexture);
 			cardno = GUI.TextField (getRect(0.3,0.03,0.2,0.04), cardno);
-			q = GUI.TextField (getRect(0.05,0.3,0.1,0.04), q);
+			q = GUI.TextField (getRect(0.25,0.16,0.06,0.04), q);
 			cost = GUI.TextField (getRect(0.68,0.16,0.06,0.04), cost);
-			level = GUI.TextField (getRect(0.25,0.16,0.06,0.04), level);
 			cardname = GUI.TextField (getRect(0.4,0.16,0.2,0.04), cardname);
 			life = GUI.TextField (getRect(0.33,0.65,0.08,0.04), life);
 			hp = GUI.TextField (getRect(0.48,0.65,0.08,0.04), hp);
@@ -102,14 +101,16 @@ public class cardmake : MonoBehaviour {
 			if (GUI.Button (getRect(0.02,0.6,0.16,0.2), "return")) {
 				Application.LoadLevel("mainscreen");
 			}
-			try{
-				for (int i=0; i<4; i++) {
-					GUI.DrawTexture(getRect(0.374+0.052*i,0.8,0.06,0.05),tmanager.getskilltexture(mskill[i].getName()));
-				}
+			GUI.color=Color.red;
+			for(int i=0;i<6;i++){
+				if(mattack[0].getattackrange()[i]!=0)
+					GUI.DrawTexture(getRect(0.266+0.0775*i,0.714,0.074,0.072),rectt);
 			}
-			catch{
-				tmanager=GameObject.Find("Tmanager").GetComponent<Texturemanager>();
+			if(mattack[0].getattackrange()[0]>1){
+				GUI.Label(getRect(0.266,0.805,0.7,0.1),"연속공격 X "+mattack[0].getattackrange()[0].ToString(),mgui);
 			}
+			
+			GUI.color=Color.white;
 		}
 		if (state == 1) {
 			if (GUI.Button (getRect(0.455,0.20,0.06,0.12), "")) {
@@ -149,10 +150,9 @@ public class cardmake : MonoBehaviour {
 				}
 			}
 			GUI.DrawTexture(getRect(0.2,0.1,0.6,0.8),mtexture2);
-			GUIStyle mgui = new GUIStyle ();
-			mgui.fontSize = 30;
-			GUI.Label(getRect(0.37,0.13,0.1,0.05),life,mgui);
-			GUI.Label(getRect(0.6,0.13,0.1,0.05),hp,mgui);
+			GUI.Label(getRect(0.34,0.13,0.1,0.05),life,mgui);
+			GUI.Label(getRect(0.5,0.13,0.1,0.05),hp,mgui);
+			GUI.Label(getRect(0.66,0.13,0.1,0.05),atk,mgui);
 			try{
 				for (int i=0; i<4; i++) {
 					GUI.DrawTexture(getRect(0.27+0.116*i,0.195,0.04,0.04),tmanager.getskilltexture(mskill[i].getName()));

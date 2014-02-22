@@ -46,13 +46,19 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\AI.cs" />
      <Compile Include="Assets\Scripts\Texturemanager.cs" />
      <Compile Include="Assets\Scripts\attack.cs" />
      <Compile Include="Assets\Scripts\background.cs" />
      <Compile Include="Assets\Scripts\battlemain.cs" />
+     <Compile Include="Assets\Scripts\button.cs" />
      <Compile Include="Assets\Scripts\card.cs" />
      <Compile Include="Assets\Scripts\cardmake.cs" />
+     <Compile Include="Assets\Scripts\makedeck.cs" />
+     <Compile Include="Assets\Scripts\shop.cs" />
      <Compile Include="Assets\Scripts\skill.cs" />
+     <Compile Include="Assets\Scripts\skillai.cs" />
+     <Compile Include="Assets\Scripts\test.cs" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Background.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Vertex Colored Shaders\Mobile Transparent Vertex Color.shader" />
